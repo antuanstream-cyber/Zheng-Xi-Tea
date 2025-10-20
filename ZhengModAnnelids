@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zheng Mods</title>
+<style>
+    body {
+        background-color: #111;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Banner superior con anuncios */
+    .banner {
+        background: linear-gradient(90deg, #007bff, #00ffff, #007bff);
+        background-size: 300% 100%;
+        color: #fff;
+        padding: 10px;
+        font-weight: bold;
+        animation: moveBanner 6s linear infinite;
+    }
+
+    @keyframes moveBanner {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+    }
+
+    h2 {
+        margin-top: 30px;
+    }
+
+    button {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        padding: 15px 30px;
+        font-size: 1.1em;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 20px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    #timer, #timer2 {
+        font-size: 1.8em;
+        margin-top: 20px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .botones-finales {
+        margin-top: 30px;
+    }
+
+    .apk-btn {
+        background: linear-gradient(90deg, #a020f0, #00ffff);
+    }
+
+    .emulador-btn {
+        background: linear-gradient(90deg, #facc15, #b45309);
+        color: #222;
+        font-weight: bold;
+    }
+
+    .descripcion {
+        font-size: 0.95em;
+        color: #ccc;
+        margin: 10px 20px;
+    }
+
+    .coffee-btn {
+        margin-top: 25px;
+        background: linear-gradient(90deg, #facc15, #7b3f00);
+        color: #fff;
+    }
+
+    /* Barra de progreso */
+    .progress-container {
+        width: 80%;
+        max-width: 400px;
+        height: 20px;
+        background-color: #333;
+        border-radius: 10px;
+        margin: 15px auto;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #00ffff, #007bff);
+        border-radius: 10px;
+        transition: width 1s linear;
+    }
+</style>
+</head>
+<body>
+
+<div class="banner" id="banner">🔥 Anuncio: ¡Nuevo Mod disponible! 🔥</div>
+
+<h2>Para continuar haga clic en el botón de abajo</h2>
+
+<button id="obtener1">Obtener Mod</button>
+
+<div id="timer" class="hidden"></div>
+<div id="progress1" class="progress-container hidden"><div class="progress-bar" id="bar1"></div></div>
+
+<!-- Segundo botón -->
+<button id="obtener2" class="hidden">Obtener Mod</button>
+
+<div id="timer2" class="hidden"></div>
+<div id="progress2" class="progress-container hidden"><div class="progress-bar" id="bar2"></div></div>
+
+<p id="mensaje" class="hidden">Ten paciencia 😃 xd tilín para que tengas el APK...</p>
+
+<!-- Sección final -->
+<div id="final" class="botones-finales hidden">
+    <a href="https://www.mediafire.com/file/e78m0m7lgx13nk5/%25F0%259D%2591%25A8%25F0%259D%2592%258F%25F0%259D%2592%258F%25F0%259D%2592%2586%25F0%259D%2592%258D%25F0%259D%2592%258A%25F0%259D%2592%2585%25F0%259D%2592%2594_%25F0%259D%2591%25BD4.0_Zheng_Xi_Tea_972.293.1.apk/file" target="_blank">
+        <button class="apk-btn">Obtener APK</button>
+    </a>
+    <p class="descripcion">Mod Annelids con armas premium, mapas y texturas cambiadas. Incluye armas extra gracias al emulador.</p>
+    
+    <a href="https://www.mediafire.com/file/ie3xj4ce2qxndk5/Shukizy_11.9.6.apk/file" target="_blank">
+        <button class="emulador-btn">Emulador</button>
+    </a>
+    <p class="descripcion">Emulador Shukizy: simula compras, necesario para activar armas extra incluidas.</p>
+
+    <button class="coffee-btn" onclick="alert('☕ By ZHENG — página de mod 1.119.11 sitio By Github')">Un cafécito</button>
+</div>
+
+<script>
+    const obtener1 = document.getElementById('obtener1');
+    const obtener2 = document.getElementById('obtener2');
+    const timer = document.getElementById('timer');
+    const timer2 = document.getElementById('timer2');
+    const mensaje = document.getElementById('mensaje');
+    const final = document.getElementById('final');
+    const banner = document.getElementById('banner');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const progress1 = document.getElementById('progress1');
+    const progress2 = document.getElementById('progress2');
+
+    // Animación tipo spamer del banner
+    const mensajes = [
+        "🔥 Nuevo Mod Annelids disponible 🔥",
+        "💥 Actualización 4.0 por Zheng 💥",
+        "🎯 Mods optimizados con armas extra 🎯",
+        "⚙️ Compatible con Emulador Shukizy ⚙️"
+    ];
+    let index = 0;
+    setInterval(() => {
+        index = (index + 1) % mensajes.length;
+        banner.textContent = mensajes[index];
+    }, 4000);
+
+    // Primer botón
+    obtener1.onclick = () => {
+        obtener1.classList.add('hidden');
+        timer.classList.remove('hidden');
+        progress1.classList.remove('hidden');
+        let count = 50;
+        const total = 50;
+        const interval = setInterval(() => {
+            timer.textContent = `Espere ${count}s...`;
+            let progress = ((total - count) / total) * 100;
+            bar1.style.width = progress + "%";
+            count--;
+            if (count < 0) {
+                clearInterval(interval);
+                timer.classList.add('hidden');
+                progress1.classList.add('hidden');
+                obtener2.classList.remove('hidden');
+            }
+        }, 1000);
+    };
+
+    // Segundo botón
+    obtener2.onclick = () => {
+        obtener2.classList.add('hidden');
+        timer2.classList.remove('hidden');
+        progress2.classList.remove('hidden');
+        let count2 = 15;
+        const total2 = 15;
+        mensaje.classList.remove('hidden');
+        const interval2 = setInterval(() => {
+            timer2.textContent = `Espere ${count2}s...`;
+            let progress = ((total2 - count2) / total2) * 100;
+            bar2.style.width = progress + "%";
+            count2--;
+            if (count2 < 0) {
+                clearInterval(interval2);
+                timer2.classList.add('hidden');
+                progress2.classList.add('hidden');
+                mensaje.classList.add('hidden');
+                final.classList.remove('hidden');
+            }
+        }, 1000);
+    };
+</script>
+
+</body>
+</html>
